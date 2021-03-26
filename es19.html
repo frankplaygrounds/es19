@@ -1,0 +1,99 @@
+
+<html>
+<body>
+    <title>es 19</title>
+
+        <h1>esercizio 19</h1>
+
+			<p id=passaggio></p>
+            <input id="input" type="number">
+            <button onclick="esegui()">Esegui</button></input>
+            <b><p>Riepilogo:</p></b>
+            <p id=ris></p>
+			<b><p>Numero più alto:</p></b>
+            <p id=ris1></p>
+			<b><p>Somma:</p></b>
+            <p id=ris2></p>
+			<b><p>Media:</p></b>
+            <p id=ris3></p>
+			<b><p>Magg,Min,Uguale:</p></b>
+            <p id=ris4></p>
+            <br>
+            <button onclick="location.reload()">Ricarica</button>
+
+    <script>
+	var x = 0;
+	var num = [];
+	var num1 = 0;
+	var y = 0;
+	var somma = 0;
+	var media = 0;
+	var z = 0;
+	var w = 0;
+	var ok;
+	document.getElementById("passaggio").innerHTML = "Inserire il numero massimo di numeri che verrano utilizzati.";
+	
+	
+	function esegui() {
+		if (ok == true){
+			num1 = parseInt(document.getElementById("input").value);
+			if (num1 > media){
+				document.getElementById("ris4").innerHTML = "Maggiore";	
+			}
+			if (num1 < media){
+				document.getElementById("ris4").innerHTML = "Minore";					
+			}
+			if (num1 == media){
+				document.getElementById("ris4").innerHTML = "Uguale";					
+			}
+			document.getElementById("passaggio").innerHTML = "Ok! Il programma è terminato. Fai click su Ricarica se desideri continuare.";
+			return;		
+		}
+		
+		while (w == 0){
+			w = parseInt(document.getElementById("input").value);
+			document.getElementById("passaggio").innerHTML = "Ok! Inserire " + w + " numeri.";
+			w = w - 1;
+			document.getElementById("input").value = "";
+			return;
+		}
+		
+		while (x <= w) {
+			num[x] = parseInt(document.getElementById("input").value);
+			document.getElementById("input").value = "";
+			document.getElementById("passaggio").innerHTML = "Ok! Il numero è stato inserito.";
+			document.getElementById("ris").innerHTML = num;
+			// https://stackoverflow.com/a/32647689
+			document.getElementById("ris1").innerHTML = Math.max(...num);
+			if (x == w) {
+				document.getElementById("passaggio").innerHTML = "Ok! Questo era l'ultimo numero. Inserisci un ultimo valore per calcolare se è maggiore/minore o uguale alla media.";
+				x++;
+				test();
+			}
+			x++;
+			return;
+		}
+
+		function test() {
+			while (y <= w) {
+				somma = num[y] + somma;
+				y++;
+				console.log(y);
+				document.getElementById("ris2").innerHTML = somma;
+			}
+
+			media();
+
+			function media() {
+				var media = somma / y;
+				document.getElementById("ris3").innerHTML = media;
+				y++;
+				ok = true;
+				return;
+			}
+		}
+	}
+    </script>
+
+</body>
+</html>
